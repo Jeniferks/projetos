@@ -1,21 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
+import "./Appbar.css"
+import { FaList, FaComment } from 'react-icons/fa';
+
+
 
 const AppBarContainer = styled.div`
 display:flex;
 justify-content: space-between;
-border-bottom: 1px solid lightgray;
 align-items: center;
-padding: 0 10px;
+padding: 0 20px;
+margin-top: 1rem;
 `
+
 
 const AppBar = (props) => {
   return (
-    <div>
+    <div className='App-Bar-Content'>
+      <h1>Astromatch</h1>
       <AppBarContainer>
-      <button onClick={props.goToChooseProfilePage}> Escolher</button>
-      <p>Astromatch</p>
-      <button onClick={props.goToMatchListPage}>Matches</button>
+      <FaList fontSize="27px" color="black" onClick={props.goToChooseProfilePage}/>
+      <img className= "header-logo" 
+        src="https://br.tinderpressroom.com/image/flame-gradient-RGB_tn1100-category.png"alt="Logo tinder"/>
+      <FaComment fontSize="27px" color="black" onClick={props.goToMatchListPage}/>
       </AppBarContainer>
     </div>
   )

@@ -1,18 +1,20 @@
 import React, {  useState } from 'react'
 import AppBar from '../AppBar/AppBar'
 import ChooseProfilePage from "../ChooseProfilePage/ChooseProfilePage"
-import styled from 'styled-components'
+//import styled from 'styled-components'
 import MatchListPage from '../MatchListPage/MatchListPage'
 
-const MainContainer = styled.div`
-border: 1px solid black;
-border-radius: 1rem;
-width: 400px;
-height: 32rem;
-margin:30px;
-display: flex;
-flex-direction: column;
-`
+// const MainContainer = styled.div`
+// border: 1px solid black;
+// border-radius: 1rem;
+// width: 400px;
+// height: 32rem;
+// margin:30px;
+// display: flex;
+// flex-direction: column;
+// background-color: white;
+
+// `
 
 const Main = () => {
 const [selectedPage, setSelectedPage] = useState("choose-profile");
@@ -41,10 +43,10 @@ const goToMatchListPage = () => {
 
   return (
     <div>
-      <MainContainer>
+      {/* <MainContainer> */}
       <AppBar goToChooseProfilePage={goToChooseProfilePage}  goToMatchListPage={goToMatchListPage}/>
       {renderSelectedPage()}
-      </MainContainer>
+      {/* </MainContainer> */}
     </div>
   )
 }
