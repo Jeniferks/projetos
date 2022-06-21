@@ -15,16 +15,17 @@ const ChooseProfilePage = () => {
 
   const chooseProfile = (choice) => {
     const body = {
-      choice: choice,
-      id: profileToChoose.id
+      id: profileToChoose.id,
+      choice: choice
+      
   }
   setProfileToChoose(undefined)
-  axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jenifer-kindermann/choose-person", body)
+  axios
+  .post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jenifer-kindermann/choose-person", body)
   .then(response => {
     console.log(response)
     getProfileToChoose()
-
-  })
+  });
   }
 
     useEffect(() => {
