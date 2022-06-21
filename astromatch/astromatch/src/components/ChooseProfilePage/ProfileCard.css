@@ -15,11 +15,14 @@
     align-items: center;
 }
 
-
 .profile-card{
     width:25rem;
     height:25rem;
 }
+
+
+
+
 
 
 @keyframes popup {

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import MatchListItem from "./MatchListItem"
 import axios from 'axios';
 import styled from 'styled-components'
+import { FaTrash} from 'react-icons/fa';
+
 
 const ListContainer = styled.div `
   padding: 1rem;
@@ -12,10 +14,11 @@ const ListContainer = styled.div `
   box-shadow: 1px 1px 5px 2px black;
   position:relative;
   bottom:70px;
+  display:block;
 `
 
 
-const MatchListPage = () => {
+const MatchListPage = (props) => {
   const [matches, setMatches] = useState([])
 
   useEffect(() => {
@@ -29,11 +32,12 @@ const MatchListPage = () => {
     <div>
 
       <ListContainer>
-        <h3>Matches</h3>
+        
         {matches.map((profile) => {
           return <MatchListItem profile={profile}/>
         })}
       </ListContainer> 
+      <FaTrash fontSize="27px" color="black" onClick={props.onClickReset}/>
     </div>
   )
 }
