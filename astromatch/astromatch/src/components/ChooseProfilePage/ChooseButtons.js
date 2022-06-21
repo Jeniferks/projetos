@@ -9,6 +9,7 @@ const ButtonsContainer = styled.div`
     justify-content: space-around;
     position:relative;
     top:2.5rem;
+    
 `
 
 const ChooseButtons = (props) => {
@@ -21,9 +22,9 @@ const ChooseButtons = (props) => {
     return (
     <div>
         <ButtonsContainer>
-        <FaBan fontSize="27px" color="black"  onClickNo={props.onClickNo}/>
+        <FaBan fontSize="27px" color="black"  onClick={props.onClickNo}/>
         <FaTrash fontSize="27px" color="black" onClick={onClickReset}/>
-        <FaHeart fontSize="27px" color='black' onClickYes={props.onClickYes}/>
+        <FaHeart fontSize="27px" color='black' onClick={props.onClickYes}/>
         </ButtonsContainer>
     </div>
     )

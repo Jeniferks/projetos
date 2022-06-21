@@ -32,20 +32,16 @@ const ChooseProfilePage = () => {
     getProfileToChoose()
     }, []);
 
-    const onClickNo = () => {
-      chooseProfile(false)
-  };
+    
 
-  const onClickYes = () => {
-      chooseProfile(true)
-  };
+  
 
   return (
     <div>
       {profileToChoose ?
       (<>
         <ProfileCard profile={profileToChoose}/>
-        <ChooseButtons onClickNo={onClickNo} onClickYes={onClickYes}/>
+        <ChooseButtons onClickNo ={() => chooseProfile(false)} onClickYes ={() => chooseProfile(true)}/>
       </>) : <p>Carregando...</p>
       }  
     </div>
