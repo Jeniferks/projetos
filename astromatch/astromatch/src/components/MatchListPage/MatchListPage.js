@@ -16,7 +16,10 @@ const ListContainer = styled.div `
   bottom:70px;
   display:block;
 `
-
+const TrashContainer = styled.div `
+position:relative;
+right:300px;
+`
 
 const MatchListPage = (props) => {
   const [matches, setMatches] = useState([])
@@ -36,8 +39,10 @@ const MatchListPage = (props) => {
         {matches.map((profile) => {
           return <MatchListItem profile={profile}/>
         })}
-      </ListContainer> 
+      </ListContainer>
+      <TrashContainer>
       <FaTrash fontSize="27px" color="black" onClick={props.onClickReset}/>
+      </TrashContainer> 
     </div>
   )
 }

@@ -13,12 +13,20 @@ const ButtonsContainer = styled.div`
 `
 
 const ChooseButtons = (props) => {
-    const onClickReset = () => {
-        axios.put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jenifer-kindermann/clear")
-        .then(response => {
-            console.log(response)
+    const onClickReset = (() => {
+        axios.put(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jenifer-kindermann/clear`,{
+            headers: {
+                Authorization: 'jenifer-kindermann'
+            }
         })
-        }
+        .then((res) => {
+            console.log(res)
+            
+        })
+        .catch((erro) => {
+            console.log(erro.response)
+        })
+    })
     return (
     <div>
         <ButtonsContainer>

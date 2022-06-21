@@ -44,6 +44,7 @@ const ChooseProfilePage = () => {
         <ChooseButtons onClickNo ={() => chooseProfile(false)} onClickYes ={() => chooseProfile(true)}/>
       </>) : <p>Carregando...</p>
       }  
+      
     </div>
   )
 }
