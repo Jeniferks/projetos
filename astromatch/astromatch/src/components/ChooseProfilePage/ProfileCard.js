@@ -1,32 +1,44 @@
 import React from 'react'
 import styled from 'styled-components';
+import "./ProfileCard.css"
 
 const ProfileCardContainer = styled.div`
-margin: 3rem;
-border: 1px solid black;
-
+background-color: white;
+border-radius:5%;
+height:30rem;
+box-shadow: 1px 1px 5px 2px black;
+position:relative;
+bottom:70px;
 `
 
 const ProfilePicture = styled.img`
 width:100%;
-display:block;
-max-height: 220px;
+height:30rem;
+display:inline;
+max-height: 30rem;
+border-radius:5%;
+box-shadow: .5rem .6rem 3px rgba(0,0,0,0.4);
 `
 
 const ProfileInfo = styled.div`
-border-top: 1px solid black;
-padding: 0 16px;
+display:flex;
+flex-direction:column;
+position:relative;
+bottom:160px;
+text-align:left;
+margin-left: 1rem;
+
 `
 
 const ProfileCard = (props) => {
   const profile = props.profile
   return (
-    <div>
+    <div className='profile-card'>
         <ProfileCardContainer>
         <ProfilePicture src={profile.photo} alt=" "/>
         <ProfileInfo>
-        <p>{profile.name}, {profile.age}</p>
-        <p>{profile.bio}</p>
+        <h2>{profile.name}, {profile.age}</h2>
+        <h3>{profile.bio}</h3>
         </ProfileInfo>
         </ProfileCardContainer>
     </div>

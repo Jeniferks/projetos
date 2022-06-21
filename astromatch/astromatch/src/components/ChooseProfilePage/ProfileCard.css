@@ -1,0 +1,56 @@
+#root {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(#c3b3b3, #c74e4e);
+}
+
+#root>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.profile-card{
+    width:25rem;
+    height:25rem;
+}
+
+
+@keyframes popup {
+    0% {
+        transform: scale(1, 1)
+    }
+
+    10% {
+        transform: scale(1.1, 1.1)
+    }
+
+    30% {
+        transform: scale(.9, .9)
+    }
+
+    50% {
+        transform: scale(1, 1)
+    }
+
+    57% {
+        transform: scale(1, 1)
+    }
+
+    64% {
+        transform: scale(1, 1)
+    }
+
+    100% {
+        transform: scale(1, 1)
+    }
+}
+
+
+
