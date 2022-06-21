@@ -5,7 +5,15 @@ import styled from 'styled-components'
 
 const ListContainer = styled.div `
   padding: 1rem;
+  background-color: white;
+  border-radius:5%;
+  height:30rem;
+  width: 23rem;
+  box-shadow: 1px 1px 5px 2px black;
+  position:relative;
+  bottom:70px;
 `
+
 
 const MatchListPage = () => {
   const [matches, setMatches] = useState([])
@@ -21,6 +29,7 @@ const MatchListPage = () => {
     <div>
 
       <ListContainer>
+        <h3>Matches</h3>
         {matches.map((profile) => {
           return <MatchListItem profile={profile}/>
         })}

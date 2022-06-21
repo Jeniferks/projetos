@@ -23,7 +23,6 @@ const ChooseButtons = (props) => {
         <ButtonsContainer>
         <FaBan fontSize="27px" color="black"  onClickNo={props.onClickNo}/>
         <FaTrash fontSize="27px" color="black" onClick={onClickReset}/>
-    
         <FaHeart fontSize="27px" color='black' onClickYes={props.onClickYes}/>
         </ButtonsContainer>
     </div>
