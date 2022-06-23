@@ -22,9 +22,9 @@ const ChooseProfilePage = () => {
   setProfileToChoose(undefined)
   axios
   .post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jenifer-kindermann/choose-person", body)
-  .then(response => {
-    console.log(response)
-    getProfileToChoose()
+  .then((res) => {
+    console.log(res);
+    getProfileToChoose();
   });
   }
 
@@ -32,7 +32,14 @@ const ChooseProfilePage = () => {
     getProfileToChoose()
     }, []);
 
-    
+    const onClickNo = () => {
+      chooseProfile(false);
+    };
+  
+    const onClickYes = () => {
+      chooseProfile(true);
+    };
+  
 
   
 
@@ -41,7 +48,7 @@ const ChooseProfilePage = () => {
       {profileToChoose ?
       (<>
         <ProfileCard profile={profileToChoose}/>
-        <ChooseButtons onClickNo ={() => chooseProfile(false)} onClickYes ={() => chooseProfile(true)}/>
+        <ChooseButtons onClickNo={onClickNo} onClickYes={onClickYes} />
       </>) : <p>Carregando...</p>
       }  
       
