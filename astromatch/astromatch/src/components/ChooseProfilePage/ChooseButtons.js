@@ -1,39 +1,28 @@
-import React  from 'react';
-import styled from 'styled-components';
-import axios from "axios";
-import { FaHeart,  FaBan, FaTrash} from 'react-icons/fa';
+import React from "react";
+import styled from "styled-components";
+import { FaHeart, FaBan, FaTrash } from "react-icons/fa";
 
-
-const ButtonsContainer = styled.div`
-    display:flex;
+const ChooseButtons = ({ onClickNo, onClickReset, onClickYes, showTrash }) => {
+  const ButtonsContainer = styled.div`
+    display: flex;
     justify-content: space-around;
-    position:relative;
-    top:2.5rem;
-    
-`
-
-const ChooseButtons = (props) => {
-    const onClickReset = () => {
-        axios
-        .put(
-            "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jenifer-kindermann/clear"
-        )
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((error) => {
-            console.log(error.response)
-        })
-    }
-    return (
+    position: relative;
+    top: ${showTrash ? "-2.5rem" : "2.5rem"};
+  `;
+  return (
     <div>
-        <ButtonsContainer>
-        <FaBan fontSize="27px" color="black"  onClick={props.onClickNo}/>
-        <FaTrash fontSize="27px" color="black" onClick={onClickReset}/>
-        <FaHeart fontSize="27px" color='black' onClick={props.onClickYes}/>
-        </ButtonsContainer>
+      <ButtonsContainer>
+        {showTrash ? (
+          <FaTrash fontSize="27px" color="black" onClick={onClickReset} />
+        ) : (
+          <>
+            <FaBan fontSize="27px" color="black" onClick={onClickNo} />
+            <FaHeart fontSize="27px" color="black" onClick={onClickYes} />
+          </>
+        )}
+      </ButtonsContainer>
     </div>
-    )
-}
+  );
+};
 
-export default ChooseButtons
+export default ChooseButtons;
