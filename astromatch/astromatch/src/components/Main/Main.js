@@ -1,8 +1,8 @@
-import React, {  useState } from 'react'
-import AppBar from '../AppBar/AppBar'
-import ChooseProfilePage from "../ChooseProfilePage/ChooseProfilePage"
+import React, { useState } from "react";
+import AppBar from "../AppBar/AppBar";
+import ChooseProfilePage from "../ChooseProfilePage/ChooseProfilePage";
 //import styled from 'styled-components'
-import MatchListPage from '../MatchListPage/MatchListPage'
+import MatchListPage from "../MatchListPage/MatchListPage";
 
 // const MainContainer = styled.div`
 // border: 1px solid black;
@@ -16,39 +16,43 @@ import MatchListPage from '../MatchListPage/MatchListPage'
 
 // `
 
-const Main = () => {
-const [selectedPage, setSelectedPage] = useState("choose-profile");
+const Main = (props) => {
+  const [selectedPage, setSelectedPage] = useState("choose-profile");
 
-const renderSelectedPage = () => {
-  switch (selectedPage) {
-    case "choose-profile":
-      return <ChooseProfilePage/>
-    case "match-list":
-      return <MatchListPage/>
-    default:
-      return<ChooseProfilePage/>
+  // console.log({ showBack });
+  const renderSelectedPage = () => {
+    switch (selectedPage) {
+      case "match-list":
+        props.setShowBack(true);
+        props.setShowTrash(true);
+        return <MatchListPage showTrash={props.showTrash} />;
+      default:
+        props.setShowBack(false);
+        props.setShowTrash(false);
+        return <ChooseProfilePage showTrash={props.showTrash} />;
+    }
+  };
 
-  }
-}
+  const goToChooseProfilePage = () => {
+    setSelectedPage("choose-profile");
+  };
 
-const goToChooseProfilePage = () => {
-  setSelectedPage("choose-profile")
-}
-
-const goToMatchListPage = () => {
-  setSelectedPage("match-list")
-}
-
-
+  const goToMatchListPage = () => {
+    setSelectedPage("match-list");
+  };
 
   return (
     <div>
       {/* <MainContainer> */}
-      <AppBar goToChooseProfilePage={goToChooseProfilePage}  goToMatchListPage={goToMatchListPage}/>
+      <AppBar
+        showBack={props.showBack}
+        goToChooseProfilePage={goToChooseProfilePage}
+        goToMatchListPage={goToMatchListPage}
+      />
       {renderSelectedPage()}
       {/* </MainContainer> */}
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

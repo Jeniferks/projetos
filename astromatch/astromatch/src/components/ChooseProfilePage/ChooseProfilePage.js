@@ -1,59 +1,90 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import ChooseButtons from './ChooseButtons'
-import ProfileCard from "./ProfileCard"
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import ChooseButtons from "./ChooseButtons";
+import ProfileCard from "./ProfileCard";
 
+const ChooseProfilePage = (props) => {
+  const [profileToChoose, setProfileToChoose] = useState({});
+  // const [choice, setChoice] = useState(false);
+  //useState("")
+  //useState(0)
+  //useState(false)
 
-const ChooseProfilePage = () => {
-  const [profileToChoose, setProfileToChoose] = useState(undefined)
-  const getProfileToChoose = () => {
-    axios.get(" https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jenifer-kindermann/person")
-    .then(response => {
-      setProfileToChoose(response.data.profile)
-    })
-  }  
+  const getProfileToChoose = async () => {
+    try {
+      const response = await axios.get(
+        "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jeniferKindermann/person"
+      );
+      setProfileToChoose(response.data.profile);
+    } catch (error) {
+      console.error(error);
+    }
 
-  const chooseProfile = (choice) => {
-    const body = {
-      id: profileToChoose.id,
-      choice: choice
-      
-  }
-  setProfileToChoose(undefined)
-  axios
-  .post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jenifer-kindermann/choose-person", body)
-  .then((res) => {
-    console.log(res);
+    // .then(response => {
+
+    // })
+  };
+
+  useEffect(() => {
     getProfileToChoose();
-  });
-  }
+    console.log("Rodar só uma vez");
+    console.log({ profileToChoose });
+  }, []);
 
-    useEffect(() => {
-    getProfileToChoose()
-    }, []);
+  const chooseProfile = async (choice) => {
+    try {
+      console.log({ choice });
+      if (choice && profileToChoose?.id) {
+        const body = {
+          id: profileToChoose.id,
+          choice: choice,
+        };
+        const response = await axios.post(
+          "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/jeniferKindermann/choose-person",
+          body
+        );
+        console.log({ response });
+        getProfileToChoose();
+        return;
+      }
+      setProfileToChoose({});
+    } catch (error) {
+      console.error({ error });
+    }
+  };
 
-    const onClickNo = () => {
-      chooseProfile(false);
-    };
-  
-    const onClickYes = () => {
-      chooseProfile(true);
-    };
-  
+  // useEffect(async () => {
+  //   async function callback() {
+  //     await chooseProfile();
+  //   }
+  //   callback();
+  // }, [choice, chooseProfile]);
 
-  
+  const onClickNo = () => {
+    chooseProfile(false);
+  };
 
+  const onClickYes = () => {
+    chooseProfile(true);
+  };
+
+  console.log("ChooseProfilePage", props.showTrash);
   return (
     <div>
-      {profileToChoose ?
-      (<>
-        <ProfileCard profile={profileToChoose}/>
-        <ChooseButtons onClickNo={onClickNo} onClickYes={onClickYes} />
-      </>) : <p>Carregando...</p>
-      }  
-      
+      {profileToChoose ? (
+        <>
+          <ProfileCard profile={profileToChoose} />
+          <ChooseButtons
+            showTrash={props.showTrash}
+            onClickNo={onClickNo}
+            onClickYes={onClickYes}
+          />
+        </>
+      ) : (
+        <p>Carregando...</p>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default ChooseProfilePage
+export default ChooseProfilePage;
